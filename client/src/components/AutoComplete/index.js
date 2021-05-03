@@ -11,7 +11,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: burlywood;
+  background-color: #282c34;
   min-height: 20px;
   width: 50%;
   border-radius: 5px;
@@ -60,9 +60,16 @@ const AutoComplete = (props) => {
     }
   }, [baseURL, filter, preview]);
 
-  if(inputRef.current) {
-    inputRef.current.focus();
-  }
+  useEffect(() => {
+    if(results.length) {
+      return;
+    }
+    if(inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef, results]);
+
+
 
   const clear = () => {
     setFilter('');

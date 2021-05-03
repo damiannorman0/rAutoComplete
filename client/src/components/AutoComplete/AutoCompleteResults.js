@@ -12,7 +12,8 @@ const StyledContainer = styled.div`
   width: 50%;
   overflow: scroll;
   position: absolute;
-  top: 50px;
+  top: 55px;
+  box-sizing: border-box;
 `
 
 const StyledUI = styled.ul`
@@ -23,19 +24,17 @@ const StyledUI = styled.ul`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   position: absolute;
   top: 0;
-
 `;
 
 const StyledLI = styled.li`
   color: black;
-  background-color: white;
   padding: 5px;
   margin-top: 2px;
   width: 100%;
@@ -45,8 +44,7 @@ const StyledLI = styled.li`
   cursor: pointer;
   overflow: scroll;
   outline: none;
-
-
+  
   &:hover {
     background-color: lightgray;
   }
@@ -58,7 +56,6 @@ const StyledLI = styled.li`
   &:focus {
     background-color: lightgray;
   }
-
 `;
 
 const AutoCompleteResults = (props) => {
