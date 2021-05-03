@@ -71,7 +71,7 @@ const AutoComplete = (props) => {
   return (
     <StyledContainer>
       {loading && <StyledLoading>loading</StyledLoading>}
-      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear} setPreview={setPreview}/>
+      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear} setPreview={setPreview} debounceRate={50}/>
       {(results.length && <AutoCompleteResults setSelected={setSelected} results={results} setResults={setResults} clear={clear} setPreview={setPreview}/>) || <></> }
     </StyledContainer>
   );
