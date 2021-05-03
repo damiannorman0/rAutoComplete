@@ -14,6 +14,7 @@ const StyledContainer = styled.div`
   position: absolute;
   top: 55px;
   box-sizing: border-box;
+  box-shadow: 0px 11px 22px 5px rgba(0,0,0,0.2);
 `
 
 const StyledUI = styled.ul`
