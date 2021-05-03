@@ -8,30 +8,19 @@ const StyledContainer = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: burlywood;
-  min-height: 200px;
+  min-height: 20px;
   width: 50%;
   border-radius: 5px;
-`;
-
-const StyledDefault= styled.div`
-  padding: 10px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  width: 50%;
-  border-radius: 5px;
-  box-sizing: border-box;
+  position: relative;
 `;
 
 const AutoComplete = (props) => {
   const {baseURL} = props;
   const [filter, setFilter] = useState('');
+  const [selected, setSelected] = useState('');
   const [results, setResults] = useState([]);
   const resultDisplay = React.createRef();
 
@@ -51,8 +40,8 @@ const AutoComplete = (props) => {
 
   return (
     <StyledContainer>
-      <AutoCompleteInput setFilter={setFilter} />
-      {(results.length && <AutoCompleteResults ref={resultDisplay}  results={results} />) || <StyledDefault>No results</StyledDefault> }
+      <AutoCompleteInput setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} />
+      {(results.length && <AutoCompleteResults ref={resultDisplay}  setSelected={setSelected} results={results} setResults={setResults} />) || <></> }
     </StyledContainer>
   );
 };

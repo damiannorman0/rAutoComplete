@@ -11,15 +11,20 @@ const StyledInput = styled.input`
 `;
 
 const AutoCompleteInput = (props) => {
-  const {setFilter} = props;
+  const {setFilter, selected, setSelected, filter} = props;
+
+  const update = (value) => {
+    setSelected('');
+    setFilter(value);
+  };
 
   const onChange = (e) => {
     const { target: { value }} = e;
-    const debounced = debounce(setFilter, 200);
-    debounced(value.toLowerCase());
+    const debounced = debounce(update, 100);
+    debounced(value);
   };
   return (
-    <StyledInput tabIndex={0} type="text" placeholder={"Input your filter"} onChange={onChange} />
+    <StyledInput tabIndex={0} type="text" placeholder={"Input your filter"} onChange={onChange} value={selected || filter} />
   );
 };
 

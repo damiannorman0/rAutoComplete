@@ -5,8 +5,8 @@ const StyledContainer = styled.div`
   height: 200px;
   width: 50%;
   overflow: scroll;
-  position: relative;
-  margin-top: 2px;
+  position: absolute;
+  top: 50px;
 `
 
 const StyledUI = styled.ul`
@@ -39,24 +39,42 @@ const StyledLI = styled.li`
   cursor: pointer;
   overflow: scroll;
   outline: none;
-  
-  
+
+
   &:hover {
     background-color: lightgray;
   }
-  
+
   &:active {
     background-color: aliceblue;
   }
-  
+
   &:focus {
     background-color: lightgray;
   }
-  
+
 `;
 
 const AutoCompleteResults = React.forwardRef((props, ref) => {
-  const { results } = props;
+  const {results, setResults, setSelected} = props;
+
+  const onClick = (e) => {
+    const { target : { innerText:value }} = e;
+    setResults([]);
+    setSelected(value);
+  };
+
+  const onKeyDown = (e) => {
+    const { keyCode } = e;
+    const activeElement = document.activeElement;
+    const value = activeElement.innerText;
+
+    if (keyCode === 13) {
+      setResults([]);
+      setSelected(value);
+    }
+  };
+
   const items = results.map((item, index) => {
     return (
       <StyledLI tabIndex={0} key={`item-${index}`}>{item}</StyledLI>
@@ -64,10 +82,10 @@ const AutoCompleteResults = React.forwardRef((props, ref) => {
   });
 
   return (
-    <StyledContainer>
-    <StyledUI>
-      {items}
-    </StyledUI>
+    <StyledContainer onClick={onClick} onKeyDown={onKeyDown}>
+      <StyledUI>
+        {items}
+      </StyledUI>
     </StyledContainer>
   );
 });

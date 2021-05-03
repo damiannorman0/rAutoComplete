@@ -7,8 +7,13 @@ const options = Array(100)
   .fill(0)
   .map((_, index) => `${index % 5}${index}Option`);
 
-app.get("/autocomplete", (req, res) =>
-  res.json(options.filter(option => option.startsWith(req.query.filter)))
+app.get("/autocomplete", (req, res) => {
+    const f = (req.query.filter || '').toLowerCase();
+    const result = options.filter((item = '') => {
+      return item.toLowerCase().includes(f);
+    });
+    return res.json(result);
+  }
 );
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
