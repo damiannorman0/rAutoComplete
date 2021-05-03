@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import AutoCompleteResults from "./AutoCompleteResults";
 import AutoCompleteInput from "./AutoCompleteInput";
 import API from "./API";
@@ -33,6 +33,7 @@ const AutoComplete = (props) => {
   const {baseURL} = props;
   const [filter, setFilter] = useState('');
   const [results, setResults] = useState([]);
+  const resultDisplay = React.createRef();
 
   useEffect(() => {
     const get = async () => {
@@ -46,12 +47,19 @@ const AutoComplete = (props) => {
     } else {
       setResults([]);
     }
-  }, [filter, results]);
+  }, [filter]);
+
+  const onKeyDown = (e) => {
+    if(results.length) {
+      console.log('ok');
+      //resultDisplay.current.focus();
+    }
+  };
 
   return (
-    <StyledContainer>
+    <StyledContainer onKeyDown={ onKeyDown }>
       <AutoCompleteInput setFilter={setFilter} />
-      {(results.length && <AutoCompleteResults results={results} />) || <StyledDefault>No results</StyledDefault> }
+      {(results.length && <AutoCompleteResults ref={resultDisplay}  results={results} />) || <StyledDefault>No results</StyledDefault> }
     </StyledContainer>
   );
 };

@@ -5,6 +5,10 @@ import AutoComplete from "./components/AutoComplete";
 
 import styled from 'styled-components/macro';
 
+const StyledApp = styled.div`
+  overflow: hidden;
+`;
+
 const StyledMain = styled.main`
   padding: 10px;
   display: flex;
@@ -13,11 +17,12 @@ const StyledMain = styled.main`
   align-items: center;
   background-color:beige;
   width: 100%;
+  overflow: hidden;
 `;
 
 function App() {
   return (
-    <div className="App">
+    <StyledApp className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -27,7 +32,7 @@ function App() {
       <StyledMain>
         <AutoComplete baseURL={"http://localhost:3000/autocomplete"} />
       </StyledMain>
-    </div>
+    </StyledApp>
   );
 }
 
