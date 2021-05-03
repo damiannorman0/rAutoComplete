@@ -44,11 +44,11 @@ const StyledLI = styled.li`
   }
   
   &:active {
-    background-color: red;
+    background-color: aliceblue;
   }
   
   &:focus {
-    background-color: blue;
+    background-color: lightgray;
   }
   
 `;

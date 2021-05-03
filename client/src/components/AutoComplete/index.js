@@ -49,15 +49,8 @@ const AutoComplete = (props) => {
     }
   }, [filter]);
 
-  const onKeyDown = (e) => {
-    if(results.length) {
-      console.log('ok');
-      //resultDisplay.current.focus();
-    }
-  };
-
   return (
-    <StyledContainer onKeyDown={ onKeyDown }>
+    <StyledContainer>
       <AutoCompleteInput setFilter={setFilter} />
       {(results.length && <AutoCompleteResults ref={resultDisplay}  results={results} />) || <StyledDefault>No results</StyledDefault> }
     </StyledContainer>
