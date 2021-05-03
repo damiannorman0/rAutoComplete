@@ -13,7 +13,7 @@ const API = async (url = '', setLoading) => {
     const response = await fetch(url);
     const json = await response.json();
     add(url, json);
-    //setLoading(false);
+    setLoading(false);
     return json;
 
   } catch (err) {
