@@ -38,7 +38,6 @@ const AutoComplete = (props) => {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState('');
   const [results, setResults] = useState([]);
-  const resultDisplay = React.createRef();
   const input = React.createRef();
 
 
@@ -67,7 +66,7 @@ const AutoComplete = (props) => {
     <StyledContainer>
       {loading && <StyledLoading>loading</StyledLoading>}
       <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear}/>
-      {(results.length && <AutoCompleteResults ref={resultDisplay}  setSelected={setSelected} results={results} setResults={setResults} clear={clear}/>) || <></> }
+      {(results.length && <AutoCompleteResults setSelected={setSelected} results={results} setResults={setResults} clear={clear}/>) || <></> }
     </StyledContainer>
   );
 };

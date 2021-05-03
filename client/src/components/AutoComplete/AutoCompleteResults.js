@@ -55,8 +55,8 @@ const StyledLI = styled.li`
 
 `;
 
-const AutoCompleteResults = React.forwardRef((props, ref) => {
-  const {results, setResults, setSelected, clear} = props;
+const AutoCompleteResults = (props, ref) => {
+  const {results, setResults, setSelected, selected, clear} = props;
 
   const onClick = (e) => {
     const { target : { innerText:value = '' } = {}} = e;
@@ -71,17 +71,23 @@ const AutoCompleteResults = React.forwardRef((props, ref) => {
     const prev = activeElement.previousSibling;
     const next = activeElement.nextSibling;
 
-    if (keyCode === 13) {
-      setResults([]);
-      setSelected(value);
-    } else if(keyCode === 27) {
-      clear();
-    } else if(keyCode === 38) {
-      e.preventDefault();
-      prev.focus();
-    } else if(keyCode === 40) {
-      e.preventDefault();
-      next.focus();
+    switch (keyCode) {
+      case 13:
+        setResults([]);
+        setSelected(value);
+        break;
+      case 27:
+        clear();
+        break;
+      case 38:
+        e.preventDefault();
+        prev.focus();
+        break;
+      case 40:
+        e.preventDefault();
+        next.focus();
+        break;
+      default:
     }
   };
 
@@ -98,6 +104,6 @@ const AutoCompleteResults = React.forwardRef((props, ref) => {
       </StyledUI>
     </StyledContainer>
   );
-});
+};
 
 export default AutoCompleteResults;
