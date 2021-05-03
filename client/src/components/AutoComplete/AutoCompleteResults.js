@@ -5,13 +5,13 @@ const StyledContainer = styled.div`
   height: 200px;
   width: 50%;
   overflow: scroll;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   position: relative;
+  margin-top: 2px;
 `
 
 const StyledUI = styled.ul`
+  border-radius-topleft: 0px;
+  border-radius-topright: 0px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,8 @@ const StyledLI = styled.li`
   text-align: left;
   cursor: pointer;
   overflow: scroll;
+  outline: none;
+  
   
   &:hover {
     background-color: lightgray;
@@ -56,11 +58,6 @@ const StyledLI = styled.li`
 const AutoCompleteResults = React.forwardRef((props, ref) => {
   const { results } = props;
   const items = results.map((item, index) => {
-    if(index === 0) {
-      return (
-        <StyledLI ref={ref} tabIndex={0} key={`item-${index}`}>{item}</StyledLI>
-      );
-    }
     return (
       <StyledLI tabIndex={0} key={`item-${index}`}>{item}</StyledLI>
     );
