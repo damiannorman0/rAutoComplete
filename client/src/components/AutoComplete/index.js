@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import AutoCompleteResults from "./AutoCompleteResults";
 import AutoCompleteInput from "./AutoCompleteInput";
 import API from "./API";
@@ -47,7 +47,7 @@ const AutoComplete = (props) => {
     } else {
       setResults([]);
     }
-  }, [filter]);
+  }, [baseURL, filter]);
 
   return (
     <StyledContainer>
