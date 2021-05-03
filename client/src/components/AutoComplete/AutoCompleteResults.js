@@ -56,10 +56,11 @@ const StyledLI = styled.li`
 `;
 
 const AutoCompleteResults = (props, ref) => {
-  const {results, setResults, setSelected, selected, clear} = props;
+  const {results, setResults, setSelected, clear, setPreview} = props;
 
   const onClick = (e) => {
     const { target : { innerText:value = '' } = {}} = e;
+    setPreview(false);
     setResults([]);
     setSelected(value);
   };
@@ -79,12 +80,27 @@ const AutoCompleteResults = (props, ref) => {
       case 27:
         clear();
         break;
+      case 9:
+        e.preventDefault();
+        setPreview(true);
+        if(e.shiftKey) {
+          setSelected(prev.innerText);
+          prev.focus();
+        } else {
+          setSelected(next.innerText);
+          next.focus();
+        }
+        break;
       case 38:
         e.preventDefault();
+        setPreview(true);
+        setSelected(prev.innerText);
         prev.focus();
         break;
       case 40:
         e.preventDefault();
+        setPreview(true);
+        setSelected(next.innerText);
         next.focus();
         break;
       default:

@@ -12,7 +12,7 @@ const StyledInput = styled.input`
 `;
 
 const AutoCompleteInput = React.forwardRef((props, ref) => {
-  const {setFilter, selected, setSelected, filter, clear} = props;
+  const {setFilter, selected, setSelected, filter, clear, setPreview} = props;
 
   const update = (value) => {
     setSelected('');
@@ -20,6 +20,7 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
   };
 
   const onChange = (e) => {
+    setPreview(false);
     const { target: { value = '' } = {}} = e;
     const debounced = debounce(update, 100);
     debounced(value);

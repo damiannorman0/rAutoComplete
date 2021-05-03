@@ -35,6 +35,7 @@ const StyledLoading = styled.div`
 const AutoComplete = (props) => {
   const {baseURL} = props;
   const [filter, setFilter] = useState('');
+  const [preview, setPreview] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState('');
   const [results, setResults] = useState([]);
@@ -42,6 +43,10 @@ const AutoComplete = (props) => {
 
 
   useEffect(() => {
+    if(preview) {
+      return;
+    }
+
     const get = async () => {
       const url = `${baseURL}?filter=${filter}`;
       const reponse = await API(url, setLoading);
@@ -53,11 +58,12 @@ const AutoComplete = (props) => {
     } else {
       setResults([]);
     }
-  }, [baseURL, filter]);
+  }, [baseURL, filter, preview]);
 
   const clear = () => {
     setFilter('');
     setSelected('');
+    setPreview(false);
     setResults([]);
     input.current.focus();
   };
@@ -65,8 +71,8 @@ const AutoComplete = (props) => {
   return (
     <StyledContainer>
       {loading && <StyledLoading>loading</StyledLoading>}
-      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear}/>
-      {(results.length && <AutoCompleteResults setSelected={setSelected} results={results} setResults={setResults} clear={clear}/>) || <></> }
+      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear} setPreview={setPreview}/>
+      {(results.length && <AutoCompleteResults setSelected={setSelected} results={results} setResults={setResults} clear={clear} setPreview={setPreview}/>) || <></> }
     </StyledContainer>
   );
 };
