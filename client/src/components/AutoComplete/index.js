@@ -23,6 +23,8 @@ const AutoComplete = (props) => {
   const [selected, setSelected] = useState('');
   const [results, setResults] = useState([]);
   const resultDisplay = React.createRef();
+  const input = React.createRef();
+
 
   useEffect(() => {
     const get = async () => {
@@ -38,10 +40,17 @@ const AutoComplete = (props) => {
     }
   }, [baseURL, filter]);
 
+  const clear = () => {
+    setFilter('');
+    setSelected('');
+    setResults([]);
+    input.current.focus();
+  };
+
   return (
     <StyledContainer>
-      <AutoCompleteInput setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} />
-      {(results.length && <AutoCompleteResults ref={resultDisplay}  setSelected={setSelected} results={results} setResults={setResults} />) || <></> }
+      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear}/>
+      {(results.length && <AutoCompleteResults ref={resultDisplay}  setSelected={setSelected} results={results} setResults={setResults} clear={clear}/>) || <></> }
     </StyledContainer>
   );
 };
