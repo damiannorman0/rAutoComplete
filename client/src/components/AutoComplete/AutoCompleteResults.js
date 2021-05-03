@@ -7,8 +7,6 @@ const KEY_TAB = 9;
 const KEY_ARROW_UP = 38;
 const KEY_ARROW_DOWN = 40;
 
-
-
 const StyledContainer = styled.div`
   height: 200px;
   width: 50%;
@@ -63,7 +61,7 @@ const StyledLI = styled.li`
 
 `;
 
-const AutoCompleteResults = (props, ref) => {
+const AutoCompleteResults = (props) => {
   const {results, setResults, setSelected, clear, setPreview} = props;
 
   const onClick = (e) => {
@@ -82,7 +80,7 @@ const AutoCompleteResults = (props, ref) => {
 
   const onKeyDown = (e) => {
     const { keyCode } = e;
-    const activeElement = document.activeElement;
+    const activeElement = document.activeElement || {};
     const value = activeElement.innerText;
     const prev = activeElement.previousSibling;
     const next = activeElement.nextSibling;

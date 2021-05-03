@@ -39,7 +39,7 @@ const AutoComplete = (props) => {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState('');
   const [results, setResults] = useState([]);
-  const input = React.createRef();
+  const inputRef = React.createRef();
 
 
   useEffect(() => {
@@ -56,6 +56,7 @@ const AutoComplete = (props) => {
     if(filter) {
       get();
     } else {
+      inputRef.current.focus();
       setResults([]);
     }
   }, [baseURL, filter, preview]);
@@ -65,14 +66,29 @@ const AutoComplete = (props) => {
     setSelected('');
     setPreview(false);
     setResults([]);
-    input.current.focus();
+    inputRef.current.focus();
   };
 
   return (
     <StyledContainer>
       {loading && <StyledLoading>loading</StyledLoading>}
-      <AutoCompleteInput ref={input} setFilter={setFilter} filter={filter} selected={selected} setSelected={setSelected} clear={clear} setPreview={setPreview} debounceRate={50}/>
-      {(results.length && <AutoCompleteResults setSelected={setSelected} results={results} setResults={setResults} clear={clear} setPreview={setPreview}/>) || <></> }
+      <AutoCompleteInput
+        ref={inputRef}
+        setFilter={setFilter}
+        filter={filter}
+        selected={selected}
+        setSelected={setSelected}
+        clear={clear}
+        setPreview={setPreview}
+        debounceRate={50}
+      />
+      {(results.length && <AutoCompleteResults
+        setSelected={setSelected}
+        results={results}
+        setResults={setResults}
+        clear={clear}
+        setPreview={setPreview}
+      />) || <></> }
     </StyledContainer>
   );
 };

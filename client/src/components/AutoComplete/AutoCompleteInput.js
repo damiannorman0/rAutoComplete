@@ -34,7 +34,15 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
   };
 
   return (
-    <StyledInput ref={ref} tabIndex={0} type="text" placeholder={"Input your filter"} onChange={onChange} onKeyDown={onKeyDown} value={selected || filter} />
+    <StyledInput
+      ref={ref}
+      tabIndex={0}
+      type="text"
+      placeholder={"Input your filter"}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      value={selected || filter}
+    />
   );
 });
 
