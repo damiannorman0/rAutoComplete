@@ -3,6 +3,7 @@ import AutoCompleteResults from "./AutoCompleteResults";
 import AutoCompleteInput from "./AutoCompleteInput";
 import API from "./API";
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 const StyledContainer = styled.div`
   padding: 10px;
@@ -41,7 +42,6 @@ const AutoComplete = (props) => {
   const [results, setResults] = useState([]);
   const inputRef = React.createRef();
 
-
   useEffect(() => {
     if(preview) {
       return;
@@ -56,10 +56,13 @@ const AutoComplete = (props) => {
     if(filter) {
       get();
     } else {
-      inputRef.current.focus();
       setResults([]);
     }
   }, [baseURL, filter, preview]);
+
+  if(inputRef.current) {
+    inputRef.current.focus();
+  }
 
   const clear = () => {
     setFilter('');
@@ -91,6 +94,16 @@ const AutoComplete = (props) => {
       />) || <></> }
     </StyledContainer>
   );
+};
+
+AutoComplete.propTypes = {
+  baseURL: PropTypes.string.isRequired,
+  debounceRate: PropTypes.number.isRequired,
+};
+
+AutoComplete.defaultProps = {
+  baseURL: '',
+  debounceRate: 100,
 };
 
 export default AutoComplete;
