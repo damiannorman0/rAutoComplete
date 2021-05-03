@@ -11,22 +11,23 @@ const StyledUI = styled.ul`
   min-height: 200px;
   width: 50%;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 `;
 
 const StyledLI = styled.li`
   color: black;
-  background-color: beige;
+  background-color: white;
   padding: 5px;
   margin-top: 2px;
   width: 100%;
-  border-radius: 5px;
   list-style: none;
   box-sizing: border-box;
   text-align: left;
   
   &:hover {
-    opacity: 0.75;
+    background-color: lightgray;
+  }
   
 `;
 

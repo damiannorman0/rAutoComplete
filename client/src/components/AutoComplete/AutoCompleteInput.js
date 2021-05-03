@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import {debounce} from 'debounce';
 
 const StyledInput = styled.input`
   border-radius: 5px;
@@ -11,9 +12,13 @@ const StyledInput = styled.input`
 
 const AutoCompleteInput = (props) => {
   const {setFilter} = props;
+
+
+
   const onChange = (e) => {
     const { target: { value }} = e;
-    setFilter(value);
+    const debounced = debounce(setFilter, 200);
+    debounced(value.toLowerCase());
   };
   return (
     <StyledInput type="text" placeholder={"Input your filter"} onChange={onChange} />
