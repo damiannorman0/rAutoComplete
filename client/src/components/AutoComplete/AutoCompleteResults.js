@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+const KEY_ESCAPE = 27;
+const KEY_ENTER = 13;
+const KEY_TAB = 9;
+const KEY_ARROW_UP = 38;
+const KEY_ARROW_DOWN = 40;
+
+
+
 const StyledContainer = styled.div`
   height: 200px;
   width: 50%;
@@ -65,6 +73,13 @@ const AutoCompleteResults = (props, ref) => {
     setSelected(value);
   };
 
+  const selectAndFocus = (element) => {
+    if(element) {
+      setSelected(element.innerText);
+      element.focus();
+    }
+  };
+
   const onKeyDown = (e) => {
     const { keyCode } = e;
     const activeElement = document.activeElement;
@@ -72,36 +87,31 @@ const AutoCompleteResults = (props, ref) => {
     const prev = activeElement.previousSibling;
     const next = activeElement.nextSibling;
 
+    e.preventDefault();
+
     switch (keyCode) {
-      case 13:
+      case KEY_ENTER:
         setResults([]);
         setSelected(value);
         break;
-      case 27:
+      case KEY_ESCAPE:
         clear();
         break;
-      case 9:
-        e.preventDefault();
+      case KEY_TAB:
         setPreview(true);
         if(e.shiftKey) {
-          setSelected(prev.innerText);
-          prev.focus();
+          selectAndFocus(prev);
         } else {
-          setSelected(next.innerText);
-          next.focus();
+          selectAndFocus(next);
         }
         break;
-      case 38:
-        e.preventDefault();
+      case KEY_ARROW_UP:
         setPreview(true);
-        setSelected(prev.innerText);
-        prev.focus();
+        selectAndFocus(prev);
         break;
-      case 40:
-        e.preventDefault();
+      case KEY_ARROW_DOWN:
         setPreview(true);
-        setSelected(next.innerText);
-        next.focus();
+        selectAndFocus(next);
         break;
       default:
     }
