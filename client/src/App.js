@@ -27,7 +27,10 @@ function App() {
           </p>
         </header>
         <StyledMain>
-          <AutoComplete baseURL={"http://localhost:3000/autocomplete"}/>
+          <AutoComplete
+            baseURL={"http://localhost:3000/autocomplete"}
+            debounceRate={100}
+          />
         </StyledMain>
       </div>
   );

@@ -33,7 +33,7 @@ const StyledLoading = styled.div`
 `;
 
 const AutoComplete = (props) => {
-  const {baseURL} = props;
+  const {baseURL, debounceRate} = props;
   const [filter, setFilter] = useState('');
   const [preview, setPreview] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -80,7 +80,7 @@ const AutoComplete = (props) => {
         setSelected={setSelected}
         clear={clear}
         setPreview={setPreview}
-        debounceRate={50}
+        debounceRate={debounceRate}
       />
       {(results.length && <AutoCompleteResults
         setSelected={setSelected}
