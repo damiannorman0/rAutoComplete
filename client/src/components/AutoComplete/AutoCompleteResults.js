@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 const StyledContainer = styled.div`
   height: 200px;
   width: 50%;
-  overflow: hidden;
+  overflow: scroll;
   position: absolute;
   top: 50px;
 `
@@ -24,6 +24,7 @@ const StyledUI = styled.ul`
   box-sizing: border-box;
   position: absolute;
   top: 0;
+
 `;
 
 const StyledLI = styled.li`
@@ -39,6 +40,7 @@ const StyledLI = styled.li`
   overflow: scroll;
   outline: none;
 
+
   &:hover {
     background-color: lightgray;
   }
@@ -50,6 +52,7 @@ const StyledLI = styled.li`
   &:focus {
     background-color: lightgray;
   }
+
 `;
 
 const AutoCompleteResults = React.forwardRef((props, ref) => {
@@ -74,9 +77,11 @@ const AutoCompleteResults = React.forwardRef((props, ref) => {
     } else if(keyCode === 27) {
       clear();
     } else if(keyCode === 38) {
-      prev && prev.focus();
+      e.preventDefault();
+      prev.focus();
     } else if(keyCode === 40) {
-      next && next.focus();
+      e.preventDefault();
+      next.focus();
     }
   };
 
