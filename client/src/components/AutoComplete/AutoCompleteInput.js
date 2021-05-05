@@ -18,7 +18,7 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
     setSelected,
     clear,
     setPreview,
-    totalInputValue,
+    totalInputValue = '',
     setTotalInputValue,
     debounceRate = 100,
   } = props;
@@ -26,7 +26,7 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
   let inputValue = '';
 
   if (selected) {
-    const s = totalInputValue.split(' ');
+    const s = totalInputValue.split(' ') || [];
     s.splice(s.length - 1, 1, selected);
     inputValue = s.join(' ');
   } else {

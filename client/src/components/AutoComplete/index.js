@@ -29,7 +29,7 @@ const StyledLoading = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.75;
+  opacity: 0.25;
 `;
 
 const AutoComplete = (props) => {

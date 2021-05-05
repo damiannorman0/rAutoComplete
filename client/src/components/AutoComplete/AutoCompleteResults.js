@@ -45,11 +45,11 @@ const StyledLI = styled.li`
   outline: none;
   
   &:hover {
-    background-color: lightgray;
+    background-color: rgba(0,0,0,0.05);
   }
 
   &:active {
-    background-color: aliceblue;
+    background-color: rgba(0,0,0,0.05);
   }
 
   &:focus {
