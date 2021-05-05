@@ -10,7 +10,7 @@ const options = Array(100)
 app.get("/autocomplete", (req, res) => {
     const f = (req.query.filter || '').toLowerCase();
     const result = options.filter((item = '') => {
-      return item.toLowerCase().includes(f);
+      return item.toLowerCase().startsWith(f);
     });
     return res.json(result);
   }

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "debounce": "^1.2.1",
-    "eslint": "^7.25.0",
+    "eslint": "6.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

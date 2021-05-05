@@ -12,18 +12,44 @@ const StyledInput = styled.input`
 `;
 
 const AutoCompleteInput = React.forwardRef((props, ref) => {
-  const {setFilter, selected, setSelected, filter, clear, setPreview, debounceRate = 100} = props;
+  const {
+    setFilter,
+    selected,
+    setSelected,
+    clear,
+    setPreview,
+    totalInputValue,
+    setTotalInputValue,
+    debounceRate = 100,
+  } = props;
 
-  const update = (value) => {
+  let inputValue = '';
+
+  if (selected) {
+    const s = totalInputValue.split(' ');
+    s.splice(s.length - 1, 1, selected);
+    inputValue = s.join(' ');
+  } else {
+    inputValue = totalInputValue;
+  }
+
+
+
+
+
+
+  const update = (filter, total) => {
     setSelected('');
-    setFilter(value);
+    setFilter(filter);
+    setTotalInputValue(total);
   };
 
   const onChange = (e) => {
     setPreview(false);
-    const { target: { value = '' } = {}} = e;
+    const { target: { value: total = '' } = {}} = e;
+    const filter = total.split(/\s/gi).pop();
     const debounced = debounce(update, debounceRate);
-    debounced(value);
+    debounced(filter, total);
   };
 
   const onKeyDown = (e) => {
@@ -41,7 +67,7 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
       placeholder={"Input your filter"}
       onChange={onChange}
       onKeyDown={onKeyDown}
-      value={selected || filter}
+      value={inputValue}
     />
   );
 });

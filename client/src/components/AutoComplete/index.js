@@ -12,7 +12,6 @@ const StyledContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: #282c34;
-  min-height: 20px;
   width: 50%;
   border-radius: 5px;
   position: relative;
@@ -35,6 +34,7 @@ const StyledLoading = styled.div`
 
 const AutoComplete = (props) => {
   const {baseURL, debounceRate} = props;
+  const [totalInputValue, setTotalInputValue] = useState('');
   const [filter, setFilter] = useState('');
   const [preview, setPreview] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -88,6 +88,8 @@ const AutoComplete = (props) => {
         filter={filter}
         selected={selected}
         setSelected={setSelected}
+        totalInputValue={totalInputValue}
+        setTotalInputValue={setTotalInputValue}
         clear={clear}
         setPreview={setPreview}
         debounceRate={debounceRate}
@@ -98,7 +100,7 @@ const AutoComplete = (props) => {
         setResults={setResults}
         clear={clear}
         setPreview={setPreview}
-      />) || <></> }
+      />) || <></>}
     </StyledContainer>
   );
 };

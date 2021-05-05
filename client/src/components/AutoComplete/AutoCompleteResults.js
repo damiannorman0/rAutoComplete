@@ -8,7 +8,6 @@ const KEY_ARROW_UP = 38;
 const KEY_ARROW_DOWN = 40;
 
 const StyledContainer = styled.div`
-  height: 200px;
   width: 50%;
   overflow: scroll;
   position: absolute;
@@ -25,12 +24,11 @@ const StyledUI = styled.ul`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: white;
   width: 100%;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  position: absolute;
   top: 0;
 `;
 
