@@ -112,7 +112,7 @@ AutoComplete.propTypes = {
 
 AutoComplete.defaultProps = {
   baseURL: '',
-  debounceRate: 100,
+  debounceRate: 50,
 };
 
 export default AutoComplete;
